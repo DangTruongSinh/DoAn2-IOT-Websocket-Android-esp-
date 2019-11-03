@@ -1,0 +1,9 @@
+package com.websocket.controller;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet(urlPatterns = {"/trangchu"})
+public class Home extends HttpServlet{
+	
+}

@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+E:\DoAn2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3831863975.index
+2342012282.index
+2668975527.index
+3008162821.index
+3128976472.index
+2399584182.index

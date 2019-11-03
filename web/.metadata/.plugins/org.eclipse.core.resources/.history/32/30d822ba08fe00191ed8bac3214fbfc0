@@ -1,0 +1,56 @@
+package com.websocket.controller;
+
+import java.io.IOException;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.websocket.OnClose;
+import javax.websocket.OnError;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
+import javax.websocket.server.ServerEndpoint;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.websocket.model.ThietBi;
+import com.websocket.service.FunctionDatabase;
+
+@ServerEndpoint("/realtime-data")
+public class RealTime {
+	 static Set<Session> users = Collections.synchronizedSet(new HashSet<>());
+	 
+	@OnOpen
+	public void handleOpen(Session session) {
+		System.out.println("Co client ket noi");
+		users.add(session);
+	}
+	@OnMessage
+	public void handleMessage(String message, Session userSession) throws IOException
+	{
+		ObjectMapper mapper = new ObjectMapper();
+		ThietBi thietbi = mapper.readValue(message, ThietBi.class);
+		int result = FunctionDatabase.update(thietbi);
+		if(result != 0)
+		{
+			String value = mapper.writeValueAsString(thietbi);
+			for (Session session : users) {
+		        session.getBasicRemote().sendText(value);
+		     }
+		}
+				
+		else
+			userSession.getBasicRemote().sendText("null");
+	}
+	@OnClose
+	  public void handleClose(Session userSession) {
+		users.remove(userSession);
+	    System.out.println("Client is now disconnected!");
+	 }
+	@OnError
+	 public void handleError(Throwable t) {
+	    t.printStackTrace();
+	  
+	}
+
+}

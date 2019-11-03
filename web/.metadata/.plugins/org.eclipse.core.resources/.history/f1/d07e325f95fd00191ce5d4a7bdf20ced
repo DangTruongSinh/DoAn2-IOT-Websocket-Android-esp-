@@ -1,0 +1,33 @@
+package com.websocket.controller;
+
+import javax.websocket.OnClose;
+import javax.websocket.OnError;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.server.ServerEndpoint;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@ServerEndpoint("/realtime-data")
+public class RealTime {
+	@OnOpen
+	public void handleOpen() {
+		System.out.println("Co client ket noi");
+	}
+	@OnMessage
+	public void handleMessage(String meString)
+	{
+		System.out.println("message from client:"+meString);
+
+	}
+	@OnClose
+	  public void handleClose() {
+	    System.out.println("Client is now disconnected!");
+	 }
+	@OnError
+	 public void handleError(Throwable t) {
+	    t.printStackTrace();
+	  
+	}
+
+}
