@@ -72,17 +72,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view.getId() == R.id.imgDen1)
             commoSendStatusImg(switchDen1.isChecked(),"den1");
         else if(view.getId() == R.id.imgDen2)
-            commoSendStatusImg(switchDen1.isChecked(),"den2");
+            commoSendStatusImg(switchDen2.isChecked(),"den2");
 
     }
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-        if(compoundButton.getId() == R.id.switchDen1)
-            commoSendStatusSwitch(b,"den1");
-        else if(compoundButton.getId() == R.id.switchDen2)
-            commoSendStatusSwitch(b,"den2");
-        else if(compoundButton.getId() == R.id.switchQuat)
+        Log.d("tag","change:"+b);
+        if(compoundButton.getId() == R.id.switchQuat)
             commoSendStatusSwitch(b,"quat");
     }
 
@@ -107,8 +104,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void handleMessage(Message msg) {
             ThietBi thietBi = (ThietBi) msg.obj;
+
             if(thietBi.getName().equals("den1"))
             {
+                Log.d("tag","nhan ve:"+thietBi.isStatus());
                 if(thietBi.isStatus())
                 {
                     imgDen1.setImageResource(R.drawable.ledsang);
@@ -135,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             else if(thietBi.getName().equals("quat"))
             {
+
                 if(thietBi.isStatus())
                     switchQuat.setChecked(true);
                 else
@@ -197,9 +197,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         client = new OkHttpClient();
         initConnect();
         imgDen1.setOnClickListener(this);
-        switchDen1.setOnCheckedChangeListener(this);
         imgDen2.setOnClickListener(this);
-        switchDen2.setOnCheckedChangeListener(this);
         switchQuat.setOnCheckedChangeListener(this);
     }
 

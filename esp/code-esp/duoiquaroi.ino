@@ -6,9 +6,9 @@ String data= "";
 
 char path[] = "/realtime-data";   //identifier of this device
 
-const char* ssid     = "wifisinh";
-const char* password = "sinhsinh";
-char* host = "";  //thay domain vao
+const char* ssid     = "Phong1.6";
+const char* password = "sonyeuthaokhonghoitiec";
+char* host = "192.168.1.105";  //thay domain vao
 const int espport=8080;
   
 WebSocketClient webSocketClient;
@@ -21,7 +21,7 @@ WiFiClient client;
 
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
 //    pinMode(readPin, INPUT);     // Initialize the LED_BUILTIN pin as an output
 
   delay(10);
@@ -58,7 +58,7 @@ currentMillis=millis();
     if (data.length() > 0) {
       Serial.println(data);
       data="";
-//    webSocketClient.sendData(data);//send sensor data to websocket server
+//    webSocketClient.sendData(data);send sensor data to websocket server
 
 
   }   
@@ -90,9 +90,15 @@ void wsconnect(){
   webSocketClient.host = host;
   if (webSocketClient.handshake(client)) {
     Serial.println("Handshake successful");
-  } else {
-    
+    webSocketClient.getData(data);
+     if (data.length() > 0) {
+      Serial.println(data);
+      data="";
+    }
+  } 
+  else {
     Serial.println("Handshake failed.");
+  }   
    delay(4000);  
    
    if(handshakeFailed){
@@ -103,4 +109,3 @@ void wsconnect(){
     handshakeFailed=1;
    
   }
-}
