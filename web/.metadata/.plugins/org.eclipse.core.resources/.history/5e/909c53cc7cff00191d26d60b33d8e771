@@ -113,7 +113,7 @@ function handlePreLoadData(item, index)
 	handleTrangThai(item);
 }
 function connect() {
-  websocket = new WebSocket("ws://doan2.enscaled.sg/realtime-data");
+  websocket = new WebSocket("ws://localhost:8080/realtime-data");
   websocket.onopen = function(message) {processOpen(message);};
   websocket.onmessage = function(message) {processMessage(message);};
   websocket.onclose = function(message) {processClose(message);};

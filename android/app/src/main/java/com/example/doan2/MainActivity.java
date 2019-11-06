@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initConnect() {
-        Request request = new Request.Builder().url("ws://192.168.1.105:8080/realtime-data").build();
+        Request request = new Request.Builder().url("ws://doan2.enscaled.sg/realtime-data").build();
         EchoWebSocketListener listener = new EchoWebSocketListener();
         ws = client.newWebSocket(request, listener);
         client.dispatcher().executorService().shutdown();

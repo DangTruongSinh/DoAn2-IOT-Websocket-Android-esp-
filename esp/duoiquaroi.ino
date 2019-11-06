@@ -1,3 +1,5 @@
+#include <Servo.h>
+
 #include <ESP8266WiFi.h>
 #include <WebSocketClient.h>
 
@@ -8,7 +10,7 @@ char path[] = "/realtime-data";   //identifier of this device
 
 const char* ssid     = "Phong1.6";
 const char* password = "sonyeuthaokhonghoitiec";
-char* host = "192.168.1.105";  //thay domain vao
+char* host = "doan2.enscaled.sg";  //thay domain vao
 const int espport=8080;
   
 WebSocketClient webSocketClient;
