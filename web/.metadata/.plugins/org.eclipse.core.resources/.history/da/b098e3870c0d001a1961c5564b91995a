@@ -1,0 +1,59 @@
+package com.websocket.model;
+
+import java.sql.Date;
+
+public class ThietBiBatTat {
+	private Long id;
+	private String ten;
+	private Boolean trangthai;
+	private Boolean chedo;
+	private Date thoigianmo;
+	private Date thoigiantat;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getTen() {
+		return ten;
+	}
+	public void setTen(String ten) {
+		this.ten = ten;
+	}
+	public boolean isTrangthai() {
+		return trangthai;
+	}
+	public void setTrangthai(boolean trangthai) {
+		this.trangthai = trangthai;
+	}
+	public boolean isChedo() {
+		return chedo;
+	}
+	public void setChedo(boolean chedo) {
+		this.chedo = chedo;
+	}
+	public Date getThoigianmo() {
+		return thoigianmo;
+	}
+	public void setThoigianmo(Date thoigianmo) {
+		this.thoigianmo = thoigianmo;
+	}
+	public Date getThoigiantat() {
+		return thoigiantat;
+	}
+	public void setThoigiantat(Date thoigiantat) {
+		this.thoigiantat = thoigiantat;
+	}
+	public ThietBiBatTat(long id, String ten, boolean trangthai, boolean chedo, Date thoigianmo, Date thoigiantat) {
+		this.id = id;
+		this.ten = ten;
+		this.trangthai = trangthai;
+		this.chedo = chedo;
+		this.thoigianmo = thoigianmo;
+		this.thoigiantat = thoigiantat;
+	}
+	public ThietBiBatTat() {
+	}
+	
+}

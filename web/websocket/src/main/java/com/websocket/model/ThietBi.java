@@ -1,41 +1,66 @@
 package com.websocket.model;
 
+import java.sql.Time;
+
 public class ThietBi {
-	private String name;
-	private boolean status;
-	private String nhietdo;
-	public ThietBi()
-	{
-		
+	private Long id;
+	private String ten;
+	private Integer giatri;
+	private Integer thoigiandoc;
+	private Boolean trangthai;
+	private Boolean chedo;
+	private Time thoigianmo;
+	private Time thoigiantat;
+	public Long getId() {
+		return id;
 	}
-	public ThietBi(String name, String nhietdo) {
-		super();
-		this.name = name;
-		this.nhietdo = nhietdo;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public ThietBi(String name, boolean status) {
-		super();
-		this.name = name;
-		this.status = status;
+	public String getTen() {
+		return ten;
 	}
-	public String getName() {
-		return name;
+	public void setTen(String ten) {
+		this.ten = ten;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public Integer getGiatri() {
+		return giatri;
 	}
-	public boolean isStatus() {
-		return status;
+	public void setGiatri(Integer giatri) {
+		this.giatri = giatri;
 	}
-	public void setStatus(boolean status) {
-		this.status = status;
+	public Integer getThoigiandoc() {
+		return thoigiandoc;
 	}
-	public String getNhietdo() {
-		return nhietdo;
+	public void setThoigiandoc(Integer thoigiandoc) {
+		this.thoigiandoc = thoigiandoc;
 	}
-	public void setNhietdo(String nhietdo) {
-		this.nhietdo = nhietdo;
+	public Boolean getTrangthai() {
+		return trangthai;
+	}
+	public void setTrangthai(Boolean trangthai) {
+		this.trangthai = trangthai;
+	}
+	public Boolean getChedo() {
+		return chedo;
+	}
+	public void setChedo(Boolean chedo) {
+		this.chedo = chedo;
 	}
 	
+	public Time getThoigianmo() {
+		return thoigianmo;
+	}
+	public void setThoigianmo(Time thoigianmo) {
+		this.thoigianmo = thoigianmo;
+	}
+	public Time getThoigiantat() {
+		return thoigiantat;
+	}
+	public void setThoigiantat(Time thoigiantat) {
+		this.thoigiantat = thoigiantat;
+	}
+	public ThietBi() {
+	}
 	
 }

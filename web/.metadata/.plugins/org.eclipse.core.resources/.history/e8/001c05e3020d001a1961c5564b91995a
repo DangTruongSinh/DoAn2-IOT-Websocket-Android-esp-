@@ -1,0 +1,23 @@
+package com.websocket.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.websocket.respository.impl.TBBatTatRespository;
+import com.websocket.respository.impl.TBCamBienRespository;
+
+public class ThietBiService implements IThietBiService {
+	TBBatTatRespository tbBatTatRespository;
+	TBCamBienRespository tbCamBienRespository;
+	public ThietBiService() {
+		tbBatTatRespository = new TBBatTatRespository();
+		tbCamBienRespository = new TBCamBienRespository();
+	}
+	@Override
+	public List<Object> getAll() {
+		List<Object> listResult = new ArrayList<Object>();
+		listResult.addAll(tbBatTatRespository.findAll());
+		listResult.addAll(tbCamBienRespository.findAll());
+		return listResult;
+	}
+}

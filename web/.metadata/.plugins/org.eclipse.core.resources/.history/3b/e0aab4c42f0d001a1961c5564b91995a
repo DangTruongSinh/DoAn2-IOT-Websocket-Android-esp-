@@ -1,0 +1,25 @@
+package com.websocket.respository.impl;
+
+import java.util.List;
+
+import com.websocket.mapper.ThietBiBatTatMapper;
+import com.websocket.model.ThietBiBatTat;
+
+public class TBBatTatRespository extends AbstractRespository<ThietBiBatTat>{
+
+	@Override
+	public List<ThietBiBatTat> findAll() {
+		String sql = "select * from thietbibattat";
+		return query(sql, new ThietBiBatTatMapper());
+	}
+
+	@Override
+	public ThietBiBatTat update(ThietBiBatTat object) {
+		String sql = "update thietbibattat set trangthai = ?, chedo = ?, thoigianmo= ?, thoigiantat = ? where id = ?";
+		System.out.println(object.getThoigianmo()+"-"+object.getThoigiantat());
+		update(sql, object.isTrangthai(), object.isChedo(), object.getThoigianmo(), object.getThoigiantat(), object.getId());
+		String sql1 = "select * from thietbibattat where id = ?";
+		return query(sql1, new ThietBiBatTatMapper(),object.getId()).get(0);
+	}
+	
+}

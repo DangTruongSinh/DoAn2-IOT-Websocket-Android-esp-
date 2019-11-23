@@ -1,0 +1,16 @@
+package com.websocket.respository.impl;
+
+import java.util.List;
+
+import com.websocket.mapper.ThietBiBatTatMapper;
+import com.websocket.model.ThietBiBatTat;
+import com.websocket.respository.ITBBatTatRespository;
+
+public class TBBatTatRespository extends AbstractRespository<ThietBiBatTat> implements ITBBatTatRespository{
+
+	@Override
+	public List<ThietBiBatTat> findAll() {
+		return query(sql, new ThietBiBatTatMapper());
+	}
+	
+}

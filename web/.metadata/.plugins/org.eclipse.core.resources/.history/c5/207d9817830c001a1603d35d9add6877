@@ -1,0 +1,16 @@
+package com.websocket.respository.impl;
+
+import java.util.List;
+
+import com.websocket.model.ThietBiBatTat;
+import com.websocket.respository.ITBBatTatRespository;
+
+public class TBBatTatRespository extends AbstractRespository<ThietBiBatTat> implements ITBBatTatRespository{
+
+	@Override
+	public List<Object> findAll() {
+		String sql = "select * from thietbibattat";
+		return query(sql, new , parameters);
+	}
+	
+}

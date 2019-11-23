@@ -1,0 +1,8 @@
+package com.websocket.respository;
+
+import com.websocket.model.ThietBiBatTat;
+import com.websocket.respository.impl.AbstractRespository;
+
+public class TBBatTatRespository extends AbstractRespository<ThietBiBatTat>{
+	
+}

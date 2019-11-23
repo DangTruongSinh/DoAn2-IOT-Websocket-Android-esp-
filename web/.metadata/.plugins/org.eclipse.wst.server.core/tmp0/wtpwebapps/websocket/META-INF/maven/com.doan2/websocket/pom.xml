@@ -11,8 +11,14 @@
 		<jsp.api.version>2.0</jsp.api.version>
 		<jstl.version>1.2</jstl.version>
 		<servlet.api.version>3.1.0</servlet.api.version>
+		<modelmapper-version>2.3.0</modelmapper-version>
 	</properties>
 	<dependencies>
+		<dependency>
+		    <groupId>org.modelmapper</groupId>
+		    <artifactId>modelmapper</artifactId>
+		    <version>${modelmapper-version}</version>
+		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>

@@ -1,0 +1,9 @@
+package com.websocket.respository;
+
+import java.util.List;
+
+import com.websocket.model.ThietBiBatTat;
+
+public interface ITBBatTatRespository {
+	public List<ThietBiBatTat> findAll();
+}

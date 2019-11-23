@@ -13,3 +13,6 @@ Nov 04, 2019 04:49:35.76 [7688:8340:1104/044935.760:ERROR:connection_factory_imp
 Nov 04, 2019 04:50:55.68 [7688:8340:1104/045055.685:ERROR:connection_factory_impl.cc(417)] Failed to connect to MCS endpoint with error -105
 Nov 04, 2019 04:54:24.99 [7688:8340:1104/045424.997:ERROR:connection_factory_impl.cc(417)] Failed to connect to MCS endpoint with error -105
 Nov 04, 2019 04:54:31.26 [7688:8340:1104/045431.266:ERROR:connection_factory_impl.cc(417)] Failed to connect to MCS endpoint with error -105
+
+Nov 23, 2019 10:23:44.06 NEW SESSION
+Nov 23, 2019 10:23:44.06 [10812:10924:1123/102343.912:ERROR:native_message_process_host.cc(297)] Native Messaging host tried sending a message that is 1051149 bytes long.

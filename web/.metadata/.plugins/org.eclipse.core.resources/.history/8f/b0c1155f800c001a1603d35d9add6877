@@ -1,0 +1,5 @@
+package com.websocket.service;
+
+public interface IThietBiService {
+	public String getAll();
+}

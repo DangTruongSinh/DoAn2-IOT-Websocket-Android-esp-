@@ -1,0 +1,7 @@
+package com.websocket.respository;
+
+import java.util.List;
+
+public interface ITBBatTatRespository {
+	public List<Object> findAll();
+}

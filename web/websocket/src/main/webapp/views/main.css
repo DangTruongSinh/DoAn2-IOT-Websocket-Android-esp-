@@ -1,16 +1,4 @@
-.bulb-1 {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  background: grey;
-}
-.bulb-2 {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  background: grey;
-}
-.fan {
+.device {
   height: 50px;
   width: 50px;
   border-radius: 50%;

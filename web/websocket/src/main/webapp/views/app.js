@@ -1,119 +1,165 @@
 let statusBulb_1 = false;
 let statusBulb_2 = false;
 let statusFan = false;
+let mode = true; //mode false => chế độ chỉnh tay manual
+let getTimeOn = "";
+let getTimeOff = "";
+let thoigiandoc;
+let thoigianmo;
+let thoigiantat;
+// socket
 let websocket;
-class Type{
-	constructor(name,status) {
-	    this.name = name;
-	    this.status = status;
-	  }
+class ThietBi{
+  constructor(id,ten,trangthai,chedo,thoigianmo,thoigiantat,giatri,thoigiandoc) {
+      this.id = id;
+      this.ten = ten;
+      this.trangthai = trangthai;
+      this.chedo = chedo;
+      this.thoigianmo = thoigianmo;
+      this.thoigiantat = thoigiantat;
+      this.giatri = giatri;
+      this.thoigiandoc = thoigiandoc;
+    }
+  
 }
+
 // Chức năng Đèn 1
 function toggleStatusBulb_1() {
   statusBulb_1 = !statusBulb_1;
-  if (statusBulb_1) {
-	  den1 = new Type("den1",1);
-  } else {
-	  den1 = new Type("den1",0);
-  }
+  den1 = new ThietBi(1,'den1',statusBulb_1,mode,thoigianmo,thoigiantat,0,0);
   let myjson = JSON.stringify(den1);
   sendMessage(myjson);
- // console.log('Đèn 1 đang mở:', statusBulb_1);
 }
 
 // Chức năng Đèn 2
 function toggleStatusBulb_2() {
   statusBulb_2 = !statusBulb_2; 
-  if (statusBulb_2) {
-	  den2 = new Type("den2",1);
-  } else {
-	  den2 = new Type("den2",0);
-  }
+  den2 = new ThietBi(2,'den2',statusBulb_2,mode,thoigianmo,thoigiantat,0,0);
   let myjson = JSON.stringify(den2);
   sendMessage(myjson);
-  console.log('Đèn 2 đang mở: ', statusBulb_2);
 }
 
 // Chức năng Quạt
 function toggleStatusFan() {
   statusFan = !statusFan;
-  if (statusFan) {
-	  quat = new Type("quat",1);
-  } else {
-	  quat = new Type("quat",0);
-  }
+  quat = new ThietBi(3,'quat',statusFan,mode,thoigianmo,thoigiantat,0,0);
   let myjson = JSON.stringify(quat);
   sendMessage(myjson);
-  console.log('Đèn 2 đang mở: ', statusBulb_2);
+}
+function ModifyMode(mode)
+{
+	if (mode) {
+	    document.getElementById('mode-status').innerHTML = 'automa';
+	    document.getElementById('mode-text').innerHTML = 'automa';
+	    //document.getElementById('mode').style.backgroundColor = 'yellow';
+	    document.getElementById('btn-den1').style.visibility = "hidden";
+	    document.getElementById('btn-den2').style.visibility = "hidden";
+	    document.getElementById('btn-quat').style.visibility = "hidden";
+	  } else {
+	    document.getElementById('mode-status').innerHTML = 'manual';
+	    document.getElementById('mode-text').innerHTML = 'manual';
+	    //document.getElementById('mode').style.backgroundColor = 'grey';
+	    document.getElementById('btn-den1').style.visibility = "visible";
+	    document.getElementById('btn-den2').style.visibility = "visible";
+	    document.getElementById('btn-quat').style.visibility = "visible";
+	  }
+}
+// Chức năng auto-manual
+function toggleMode() {
+  mode = !mode;
+  console.log('Chế độ Tự động: ', mode);
+  var arrays = [];
+  ModifyMode(mode);
+  object = new ThietBi(0,'chedo',statusFan,mode,thoigianmo,thoigiantat,0,0);
+  let myjson = JSON.stringify(object);
+  sendMessage(myjson);
+  
+}
+//Lưu giờ gian
+function saveChanges() {
+  getTimeOn = $('#time-on-input').val();
+  getTimeOff = $('#time-off-input').val();
+  document.getElementById('time-on').innerHTML = getTimeOn;
+  document.getElementById('time-off').innerHTML = getTimeOff;
+  //
+  thoigianmo = getTimeOn +":00";
+  thoigiantat = getTimeOff + ":00";
+  object = new ThietBi(0,'chedo',statusFan,true,thoigianmo,thoigiantat,0,0);
+  console.log(object);
+  let myjson = JSON.stringify(object);
+  sendMessage(myjson);
 }
 
+$('#settime-btn').click(function() {
+
+  if (mode) {
+    $('#basicModal').modal('show');
+  } else {
+    alert("Thiết lập thời gian chỉ hoạt động ở chế độ Tự động");
+  }
+});
+
+// socket
 function handleTrangThai(object)
 {
-	if(!object.name.localeCompare('den1'))
-	{
-		if(object.status == true)
-		{
-			document.getElementById('bulb-1-status').innerHTML = 'on';
-			document.getElementById('bulb-1').style.backgroundColor = 'yellow';
-			statusBulb_1 = true;
-		}
-		else
-		{
-			 document.getElementById('bulb-1-status').innerHTML = 'off';
-			 document.getElementById('bulb-1').style.backgroundColor = 'grey';
-			 statusBulb_1 = false;
-		}
-	}
-	else if(!object.name.localeCompare('den2'))
-	{
-		if(object.status == true)
-		{
-			document.getElementById('bulb-2-status').innerHTML = 'on';
-		    document.getElementById('bulb-2').style.backgroundColor = 'yellow';
-		    statusBulb_2 = true;
-		}
-		else
-		{
-			 document.getElementById('bulb-2-status').innerHTML = 'off';
-			 document.getElementById('bulb-2').style.backgroundColor = 'grey';
-			 statusBulb_2 = false;
-		}
-	    
-	}
-	else if(!object.name.localeCompare('quat'))
-	{
-		if(object.status == true)
-		{
-			document.getElementById('fan-status').innerHTML = 'on';
-		    document.getElementById('fan').style.backgroundColor = 'yellow';
-		    statusFan = true;
-		}
-		else
-		{
-			document.getElementById('fan-status').innerHTML = 'off';
-		    document.getElementById('fan').style.backgroundColor = 'grey';
-		    statusFan = false;
-		}
-	}
-	else if(!object.name.localeCompare('nhietdo'))
-	{
-		document.getElementById('room-temp').innerHTML = object.nhietdo;
-	}
-	else if(!object.name.localeCompare('chedo'))
-	{
-		if(object.status == true)
-			document.getElementById('mode').innerHTML = "AUTO";
-		else
-			document.getElementById('mode').innerHTML = "MANUAL";
-	}
+  if(!object.ten.localeCompare('den1'))
+  {
+    if(object.trangthai == true)
+    {
+      document.getElementById('bulb-1-status').innerHTML = 'on';
+      document.getElementById('bulb-1').style.backgroundColor = 'yellow';
+      statusBulb_1 = true;
+    }
+    else
+    {
+       document.getElementById('bulb-1-status').innerHTML = 'off';
+       document.getElementById('bulb-1').style.backgroundColor = 'grey';
+       statusBulb_1 = false;
+    }
+  }
+  else if(!object.ten.localeCompare('den2'))
+  {
+    if(object.trangthai == true)
+    {
+      document.getElementById('bulb-2-status').innerHTML = 'on';
+        document.getElementById('bulb-2').style.backgroundColor = 'yellow';
+        statusBulb_2 = true;
+    }
+    else
+    {
+       document.getElementById('bulb-2-status').innerHTML = 'off';
+       document.getElementById('bulb-2').style.backgroundColor = 'grey';
+       statusBulb_2 = false;
+    }
+      
+  }
+  else if(!object.ten.localeCompare('quat'))
+  {
+    if(object.trangthai == true)
+    {
+    	document.getElementById('fan-status').innerHTML = 'on';
+        document.getElementById('fan').style.backgroundColor = 'yellow';
+        statusFan = true;
+    }
+    else
+    {
+    	document.getElementById('fan-status').innerHTML = 'off';
+        document.getElementById('fan').style.backgroundColor = 'grey';
+        statusFan = false;
+    }
+  }
+  else if(!object.ten.localeCompare('cbnhietdo'))
+  {
+    document.getElementById('room-temp').innerHTML = object.giatri;
+  }
 }
 function handlePreLoadData(item, index)
 {
-	console.log(item);
-	handleTrangThai(item);
+  console.log(item);
+  handleTrangThai(item);
 }
 function connect() {
-  websocket = new WebSocket("ws://doan2.enscaled.sg/realtime-data");
+  websocket = new WebSocket("ws://doan21.j.layershift.co.uk/realtime-data");
   websocket.onopen = function(message) {processOpen(message);};
   websocket.onmessage = function(message) {processMessage(message);};
   websocket.onclose = function(message) {processClose(message);};
@@ -127,24 +173,39 @@ function processOpen(message) {
   console.log("Server connect... \n");
 }
 function processMessage(message) {
-	let obj = JSON.parse(message.data);
-	console.log(typeof message.data);
-	if(Array.isArray(obj))
+	if(message.data != null)
 	{
-		console.log("ke:"+message.data);
-		obj.forEach(handlePreLoadData);
-	}
-	else
-	{
-		handleTrangThai(obj);
-	}
-	
+		let obj = JSON.parse(message.data);
+		console.log(obj);
+		let xx;
+		if(Array.isArray(obj))
+		{
+			obj.forEach(handlePreLoadData);
+			xx = obj[0];
+		}
+		else
+		{
+			handleTrangThai(obj);
+			xx = obj;
+		}
+		if(xx.chedo == true)
+			document.getElementById('mode-text').innerHTML = "AUTO";
+		else
+			document.getElementById('mode-text').innerHTML = "MANUAL";
+		ModifyMode(xx.chedo);
+		document.getElementById('time-on').innerHTML = xx.thoigianmo;
+		document.getElementById('time-off').innerHTML = xx.thoigiantat;
+		thoigianmo = xx.thoigianmo;
+		thoigiantat = xx.thoigiantat;
+		mode = xx.chedo;
+		console.log("mode:"+mode);
+	} 
 }
 function processClose(message) {
-	console.log("Server Disconnect... \n");
+  console.log("Server Disconnect... \n");
 }
 function processError(message) {
-	console.log("Error... " + message +" \n");
+  console.log("Error... " + message +" \n");
 }
 function sendMessage(message) {
   if (typeof websocket != 'undefined' && websocket.readyState == WebSocket.OPEN) {

@@ -16,17 +16,20 @@ import javax.websocket.server.ServerEndpoint;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.websocket.model.ThietBi;
-import com.websocket.service.FunctionDatabase;
+import com.websocket.service.ThietBiService;
 
 @ServerEndpoint("/realtime-data")
 public class RealTime {
-	 static Set<Session> users = Collections.synchronizedSet(new HashSet<>());
-	 
+	static Set<Session> users = Collections.synchronizedSet(new HashSet<>());
+	ThietBiService thietbiService;	
+	public RealTime() {
+		thietbiService = new ThietBiService();
+	}
 	@OnOpen
 	public void handleOpen(Session session) {
 		System.out.println("Co client ket noi");
 		users.add(session);
-		List<ThietBi> list = FunctionDatabase.getAll();
+		List<ThietBi> list = thietbiService.getAll();
 		ObjectMapper mapper = new ObjectMapper();
 		String value;
 		try {
@@ -48,15 +51,25 @@ public class RealTime {
 	{
 		ObjectMapper mapper = new ObjectMapper();
 		ThietBi thietbi = mapper.readValue(message, ThietBi.class);
-		int result = FunctionDatabase.update(thietbi);
-		if(result != 0)
+		System.out.println(thietbi.getTen()+"-"+thietbi.getThoigianmo()+"-"+thietbi.getThoigiantat());
+		String value = null;
+		if(thietbi.getTen().contains("chedo"))
 		{
-			String value = mapper.writeValueAsString(thietbi);
+			List<ThietBi> result = thietbiService.updateMod(thietbi);
+			value = mapper.writeValueAsString(result);
+		}
+		else
+		{
+			ThietBi result = thietbiService.update(thietbi);
+			value = mapper.writeValueAsString(result);
+		}
+		System.out.println(value);
+		if(value != null)
+		{
 			for (Session session : users) {
 		        session.getBasicRemote().sendText(value);
 		     }
-		}
-				
+		}		
 		else
 			userSession.getBasicRemote().sendText("null");
 	}

@@ -1,0 +1,5 @@
+package com.websocket.respository;
+
+public interface IAbstractRespository {
+
+}

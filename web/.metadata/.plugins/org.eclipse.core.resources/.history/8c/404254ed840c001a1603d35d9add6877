@@ -1,0 +1,15 @@
+package com.websocket.service;
+
+import java.util.List;
+
+import com.websocket.respository.impl.TBBatTatRespository;
+
+public class ThietBiService implements IThietBiService {
+	
+	@Override
+	public List<Object> getAll() {
+		TBBatTatRespository tbBatTatRespository = new TBBatTatRespository();
+		tbBatTatRespository.
+		return null;
+	}
+}

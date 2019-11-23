@@ -1,0 +1,10 @@
+package com.websocket.service;
+
+public class ThietBiService implements IThietBiService {
+
+	@Override
+	public String getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
