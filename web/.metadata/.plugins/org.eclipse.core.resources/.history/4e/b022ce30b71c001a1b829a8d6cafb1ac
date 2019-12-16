@@ -1,0 +1,9 @@
+package com.websocket.respository.impl;
+
+import com.websocket.model.TaiKhoan;
+
+public abstract class TaiKhoanRespository extends AbstractRespository<TaiKhoan>{
+
+	
+
+}

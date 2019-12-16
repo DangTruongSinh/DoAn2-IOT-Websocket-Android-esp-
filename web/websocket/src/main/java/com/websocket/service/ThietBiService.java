@@ -28,18 +28,18 @@ public class ThietBiService implements IThietBiService {
 	return listResult;
 	}
 	@Override
-	public ThietBi update(ThietBi object) {
+	public List<ThietBi> update(ThietBi object) {
 		if(object.getTen().contains("cb"))
-			return mapper.map(tbCamBienRespository.update(mapper.map(object,ThietBiCamBien.class)),ThietBi.class);
+			tbCamBienRespository.update(mapper.map(object,ThietBiCamBien.class));
 		else
-			return mapper.map(tbBatTatRespository.update(mapper.map(object,ThietBiBatTat.class)),ThietBi.class);
+			tbBatTatRespository.update(mapper.map(object,ThietBiBatTat.class));
+		return  getAll();
 	}
 	@Override
 	public List<ThietBi> updateMod(ThietBi object) {
-		List<ThietBi> listResult = new ArrayList<ThietBi>();
 		tbBatTatRespository.updateMode(object.getChedo(), object.getThoigianmo(),
-				object.getThoigiantat()).forEach((item)->listResult.add(mapper.map(item,ThietBi.class)));
-		return listResult;
+				object.getThoigiantat());
+		return getAll();
 	}
 }
 	

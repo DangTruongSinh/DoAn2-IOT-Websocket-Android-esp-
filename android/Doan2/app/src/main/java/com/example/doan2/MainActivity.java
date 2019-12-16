@@ -1,35 +1,35 @@
 package com.example.doan2;
 
-import androidx.appcompat.app.AppCompatActivity;
+        import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.TimePickerDialog;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.TimePicker;
-
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+        import android.app.TimePickerDialog;
+        import android.os.Bundle;
+        import android.os.Handler;
+        import android.os.Message;
+        import android.util.Log;
+        import android.view.View;
+        import android.widget.CompoundButton;
+        import android.widget.ImageView;
+        import android.widget.Switch;
+        import android.widget.TextView;
+        import android.widget.TimePicker;
 
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.WebSocket;
-import okhttp3.WebSocketListener;
+        import com.fasterxml.jackson.core.JsonProcessingException;
+        import com.fasterxml.jackson.databind.ObjectMapper;
+
+        import java.io.IOException;
+        import java.text.ParseException;
+        import java.text.SimpleDateFormat;
+        import java.util.Calendar;
+        import java.util.Date;
+
+
+        import okhttp3.OkHttpClient;
+        import okhttp3.Request;
+        import okhttp3.Response;
+        import okhttp3.WebSocket;
+        import okhttp3.WebSocketListener;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 thoigiantat = thietBi.getThoigiantat();
                 txtThoigianTat.setText(thoigiantat);
             }
-        isloaded = true;
+            isloaded = true;
         }
     };
     private void output(final String txt) {
@@ -311,7 +311,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initConnect() {
-        Request request = new Request.Builder().url("ws://doan21.j.layershift.co.uk/realtime-data").build();
+        //ws://doan21.j.layershift.co.uk/realtime-data
+        String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
+        Request request = new Request.Builder().url("ws://smarthome.j.layershift.co.uk/realtime-data?username="
+                +username+"&password="+password).build();
         EchoWebSocketListener listener = new EchoWebSocketListener();
         ws = client.newWebSocket(request, listener);
         client.dispatcher().executorService().shutdown();

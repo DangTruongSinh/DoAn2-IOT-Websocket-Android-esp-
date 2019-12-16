@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
-<fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
-<fullyQualifiedTypeName name="javax.websocket.server.ServerEndpoint"/>
-<fullyQualifiedTypeName name="javax.websocket.OnOpen"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
-<fullyQualifiedTypeName name="java.lang.Exception"/>
-<fullyQualifiedTypeName name="java.util.Collections"/>
-<fullyQualifiedTypeName name="java.util.HashSet"/>
-<fullyQualifiedTypeName name="java.util.Set"/>
-<fullyQualifiedTypeName name="com.mysql.cj.Session"/>
-<fullyQualifiedTypeName name="javax.websocket.Session"/>
-<fullyQualifiedTypeName name="java.util.ResourceBundle"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="java.beans.Statement"/>
-<fullyQualifiedTypeName name="com.fasterxml.jackson.databind.ObjectMapper"/>
 <fullyQualifiedTypeName name="com.websocket.service.FunctionDatabase"/>
 <fullyQualifiedTypeName name="java.awt.List"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
@@ -45,9 +32,32 @@
 <fullyQualifiedTypeName name="javax.websocket.OnClose"/>
 <fullyQualifiedTypeName name="javax.websocket.OnError"/>
 <fullyQualifiedTypeName name="com.websocket.model.ThietBi"/>
-<fullyQualifiedTypeName name="com.websocket.respository.IAbstractRespository"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.websocket.model.ThietBiBatTat"/>
 <fullyQualifiedTypeName name="java.sql.Time"/>
 <fullyQualifiedTypeName name="com.websocket.respository.ITBBatTatRespository"/>
+<fullyQualifiedTypeName name="com.websocket.model.A"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.servlet.Filter"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="javax.jws.WebService"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+<fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="com.fasterxml.jackson.databind.ObjectMapper"/>
+<fullyQualifiedTypeName name="com.websocket.utils.HttpUtil"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
+<fullyQualifiedTypeName name="com.websocket.respository.IAbstractRespository"/>
+<fullyQualifiedTypeName name="com.websocket.respository.impl.AbstractRespository"/>
+<fullyQualifiedTypeName name="com.websocket.mapper.IRowMapper"/>
+<fullyQualifiedTypeName name="com.websocket.respository.ITaiKhoanRespository"/>
+<fullyQualifiedTypeName name="com.websocket.mapper.TaiKhoanMapper"/>
+<fullyQualifiedTypeName name="com.websocket.respository.impl.TaiKhoanRespository"/>
+<fullyQualifiedTypeName name="com.websocket.model.TaiKhoan"/>
+<fullyQualifiedTypeName name="com.websocket.service.TaiKhoanService"/>
+<fullyQualifiedTypeName name="javax.websocket.Session"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="javax.websocket.server.PathParam"/>
 </qualifiedTypeNameHistroy>

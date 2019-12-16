@@ -49,14 +49,12 @@ function toggleStatusFan() {
 function ModifyMode(mode)
 {
 	if (mode) {
-	    document.getElementById('mode-status').innerHTML = 'automa';
 	    document.getElementById('mode-text').innerHTML = 'automa';
 	    //document.getElementById('mode').style.backgroundColor = 'yellow';
 	    document.getElementById('btn-den1').style.visibility = "hidden";
 	    document.getElementById('btn-den2').style.visibility = "hidden";
 	    document.getElementById('btn-quat').style.visibility = "hidden";
 	  } else {
-	    document.getElementById('mode-status').innerHTML = 'manual';
 	    document.getElementById('mode-text').innerHTML = 'manual';
 	    //document.getElementById('mode').style.backgroundColor = 'grey';
 	    document.getElementById('btn-den1').style.visibility = "visible";
@@ -138,13 +136,13 @@ function handleTrangThai(object)
     if(object.trangthai == true)
     {
     	document.getElementById('fan-status').innerHTML = 'on';
-        document.getElementById('fan').style.backgroundColor = 'yellow';
+        document.getElementById('fan').classList.add("imgquat");
         statusFan = true;
     }
     else
     {
     	document.getElementById('fan-status').innerHTML = 'off';
-        document.getElementById('fan').style.backgroundColor = 'grey';
+    	 document.getElementById('fan').classList.remove("imgquat");
         statusFan = false;
     }
   }
@@ -159,7 +157,9 @@ function handlePreLoadData(item, index)
   handleTrangThai(item);
 }
 function connect() {
-  websocket = new WebSocket("ws://doan21.j.layershift.co.uk/realtime-data");
+	//doan21.j.layershift.co.uk
+	//http://node219422-smarthome.j.layershift.co.uk/
+  websocket = new WebSocket("ws://smarthome.j.layershift.co.uk/realtime-data");
   websocket.onopen = function(message) {processOpen(message);};
   websocket.onmessage = function(message) {processMessage(message);};
   websocket.onclose = function(message) {processClose(message);};

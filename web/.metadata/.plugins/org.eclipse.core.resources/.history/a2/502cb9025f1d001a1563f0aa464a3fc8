@@ -1,0 +1,132 @@
+.device {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: grey;
+}
+body, html {
+  height: 100%;
+}
+body{
+	background-image: url("hinhnen.jpg");
+  	height: 100%;
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+}
+#khung_giua{
+	width: 800px;
+	height: 500px;
+	margin-top: 50px;
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	-ms-transform: translate(-50%, -50%);
+  	transform: translate(-50%, -50%);
+  	background-color: rgb(0,0,0,0.6);
+}
+#tieude{
+  text-align: center;
+  font-size: 30px;
+}
+.textfont{
+  color: #ffffff;
+  font-size: 18px;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 22px;
+  margin-left: 50px;
+  margin-top: 3px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.khung_duoi{
+  margin-top: 50px;
+}
+.col-3{
+  border-right: 1px solid white;
+  padding-top: 20px;
+}
+.cot1{
+  border-top: 5px solid #ED1B62;
+  color: white;
+}
+.cot2{
+  border-top: 5px solid #F05A16;
+  color: white;
+}
+.cot3{
+  border-top: 5px solid #AC6B01;
+  color: white;
+}
+.cot4{ 
+  border-top: 5px solid #EEEC3B;
+  border-right: 0px;
+  color: white;
+}
+.text-light{
+  font-size: 20px;
+}
+.imgquat{
+    -webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 2s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }
+}
+}

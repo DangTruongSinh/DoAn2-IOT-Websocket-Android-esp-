@@ -19,9 +19,12 @@ public abstract class AbstractRespository<T> implements IAbstractRespository<T> 
 	private Connection getConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://node218862-doan21.j.layershift.co.uk/doan2";
+			//node218862-doan21.j.layershift.co.uk
+			// node219421-smarthome.j.layershift.co.uk
+			String url = "jdbc:mysql://node219421-smarthome.j.layershift.co.uk/doan2?useSSL=false";
 			String username = "root";
-			String password = "ESQbqk17665";
+			//ESQbqk17665 KMDkle86012
+			String password = "KMDkle86012";
 			Connection connection = (Connection) DriverManager.getConnection(url, username, password);
 			return connection;
 		} catch (ClassNotFoundException | SQLException e) {

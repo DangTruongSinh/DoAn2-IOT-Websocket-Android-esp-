@@ -7,4 +7,5 @@ import com.websocket.model.ThietBiBatTat;
 
 public interface ITBBatTatRespository extends IAbstractRespository<ThietBiBatTat>{
 	public List<ThietBiBatTat> updateMode(boolean mode, Time thoigianbat, Time thoigiantat);
+	
 }

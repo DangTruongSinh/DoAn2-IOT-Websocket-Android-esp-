@@ -27,7 +27,6 @@ public class RealTime {
 	}
 	@OnOpen
 	public void handleOpen(Session session) {
-		System.out.println("Co client ket noi");
 		users.add(session);
 		List<ThietBi> list = thietbiService.getAll();
 		ObjectMapper mapper = new ObjectMapper();
@@ -35,7 +34,9 @@ public class RealTime {
 		try {
 			value = mapper.writeValueAsString(list);
 			session.getBasicRemote().sendText(value);
-			System.out.println(value);
+			session.getBasicRemote().sendText(value);
+			session.getBasicRemote().sendText(value);
+			System.out.println("hehhe");
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,6 +50,7 @@ public class RealTime {
 	@OnMessage
 	public void handleMessage(String message, Session userSession) throws IOException
 	{
+		System.out.println("kkakakak");
 		ObjectMapper mapper = new ObjectMapper();
 		ThietBi thietbi = mapper.readValue(message, ThietBi.class);
 		System.out.println(thietbi.getTen()+"-"+thietbi.getThoigianmo()+"-"+thietbi.getThoigiantat());
@@ -60,7 +62,8 @@ public class RealTime {
 		}
 		else
 		{
-			ThietBi result = thietbiService.update(thietbi);
+			
+			List<ThietBi> result = thietbiService.update(thietbi);
 			value = mapper.writeValueAsString(result);
 		}
 		System.out.println(value);

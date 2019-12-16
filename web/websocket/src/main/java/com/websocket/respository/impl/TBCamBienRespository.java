@@ -14,11 +14,10 @@ public class TBCamBienRespository extends AbstractRespository<ThietBiCamBien> {
 	}
 
 	@Override
-	public ThietBiCamBien update(ThietBiCamBien object) {
+	public List<ThietBiCamBien> update(ThietBiCamBien object) {
 		String sql = "update thietbicambien set giatri = ?, thoigiandoc = ? where id = ?";
 		update(sql, object.getGiatri(), object.getThoigiandoc(), object.getId());
-		String sql1 = "select * from thietbicambien where id = ?";
-		return query(sql1, new ThietBiCamBienMapper(),object.getId()).get(0);
+		return findAll();
 	}
 
 }

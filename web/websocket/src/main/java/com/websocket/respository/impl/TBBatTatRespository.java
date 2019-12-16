@@ -16,11 +16,10 @@ public class TBBatTatRespository extends AbstractRespository<ThietBiBatTat> impl
 	}
 
 	@Override
-	public ThietBiBatTat update(ThietBiBatTat object) {
-		String sql = "update thietbibattat set trangthai = ?, chedo = ?, thoigianmo= ?, thoigiantat = ? where id = ?";
-		update(sql, object.isTrangthai(), object.isChedo(), object.getThoigianmo(), object.getThoigiantat(), object.getId());
-		String sql1 = "select * from thietbibattat where id = ?";
-		return query(sql1, new ThietBiBatTatMapper(),object.getId()).get(0);
+	public List<ThietBiBatTat> update(ThietBiBatTat object) {
+		String sql = "update thietbibattat set trangthai = ? where id = ?";
+		update(sql, object.isTrangthai(), object.getId());
+		return findAll();
 	}
 
 	@Override
